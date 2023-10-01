@@ -1,3 +1,5 @@
+
+
 async function loadUsersData() {
     const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
     const data = await response.json()
@@ -12,31 +14,70 @@ window.onload = async function () {
     tbody.innerHTML = data
         .map((data) => {
           return  /*html*/`
-            <tr>
-              <th scope="row">${data.id}</th>
-              <td>${data.name}</td>
-              <td>${data.username}</td>
-              <td>${data.email}</td>
+            <tr class="contenitore">
+              <th>${data.id}</th>
+              <td class="userName">${data.name}</td>
+              <td class="userUsername">${data.username}</td>
+              <td class="userEmail">${data.email}</td>
             </tr>    
         `
 })
 .join("")
 }
 
-const searchName = (event) => {
+
+const searchName = (ev) => {
     let query = ev.target.value;
-    let allTitles = document.querySelectorAll(".card-name");
-    console.log(
-      query,
-      allTitles[0].innerText.toLowerCase().includes(query.toLowerCase())
-    );
-    allTitles.forEach((name) => {
-      const currCard = name.parentElement.parentElement.parentElement;
-      if (!name.innerText.toLowerCase().includes(query.toLowerCase())) {
-        currCard.style.display = "none";
+    let allNames = document.querySelectorAll(".userName");
+   
+    allNames.forEach((name) => {
+      const currUser = document.querySelector(".contenitore");
+      if (name.innerText.toLowerCase().includes(query.toLowerCase())) {
+        currUser.style.display = "block";
       } else {
-        currCard.style.display = "block";
+        currUser.style.display = "none";
       }
-    });
+    })
   };
 
+
+  /*function query() {
+    
+    let chooseOne = document.querySelector('#choose-one')
+    let inputQuery = document.querySelector('#input-query')
+    let query = inputQuery.value.toLowerCase()
+
+    let userResult = []
+
+
+    // ricerca per nome
+    if (chooseOne.value === '1') {
+        userResult = data.filter(word => {
+            lowerName = word.name.toLowerCase()
+            return lowerName.includes(query)
+        })
+        // ricerca per username
+
+    } else if (chooseOne.value === '2') {
+        userResult = data.filter(word => {
+            lowerUsername = word.username.toLowerCase()
+            return lowerUsername.includes(query)
+        })
+
+        // ricerca per email
+
+    } else if (chooseOne.value === '3') {
+
+        userResult = data.filter(word => {
+            lowerEmail = word.email.toLowerCase()
+
+            return lowerEmail.includes(query)
+        })
+
+        // campo ricerca non selezionato
+    } else {
+
+
+        alert('Seleziona un campo nella ricerca')
+    }
+}*/

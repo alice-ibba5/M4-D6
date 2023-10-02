@@ -1,4 +1,5 @@
-
+let research = document.querySelector("#input-query")
+let filter = document.querySelector("#select-one")
 
 async function loadUsersData() {
     const response = await fetch(`https://jsonplaceholder.typicode.com/users`)
@@ -26,58 +27,24 @@ window.onload = async function () {
 }
 
 
-const searchName = (ev) => {
-    let query = ev.target.value;
-    let allNames = document.querySelectorAll(".userName");
+function searchData() {
+    let query = research.value.toLowerCase();
+    let filtro = filter.value;
+    let allData = document.querySelectorAll(`.${filtro}`);
    
-    allNames.forEach((name) => {
-      const currUser = document.querySelector(".contenitore");
-      if (name.innerText.toLowerCase().includes(query.toLowerCase())) {
-        currUser.style.display = "block";
-      } else {
+    allData.forEach(data => {
+      const currUser = data.parentElement.parentElement.parentElement;
+      if (!(data.textContent.toLowerCase()).includes(query)) {
         currUser.style.display = "none";
+      } else {
+        currUser.style.display = "";
       }
     })
   };
 
+  research.addEventListener('input', searchData);
 
-  /*function query() {
-    
-    let chooseOne = document.querySelector('#choose-one')
-    let inputQuery = document.querySelector('#input-query')
-    let query = inputQuery.value.toLowerCase()
-
-    let userResult = []
-
-
-    // ricerca per nome
-    if (chooseOne.value === '1') {
-        userResult = data.filter(word => {
-            lowerName = word.name.toLowerCase()
-            return lowerName.includes(query)
-        })
-        // ricerca per username
-
-    } else if (chooseOne.value === '2') {
-        userResult = data.filter(word => {
-            lowerUsername = word.username.toLowerCase()
-            return lowerUsername.includes(query)
-        })
-
-        // ricerca per email
-
-    } else if (chooseOne.value === '3') {
-
-        userResult = data.filter(word => {
-            lowerEmail = word.email.toLowerCase()
-
-            return lowerEmail.includes(query)
-        })
-
-        // campo ricerca non selezionato
-    } else {
-
-
-        alert('Seleziona un campo nella ricerca')
-    }
-}*/
+  filter.addEventListener('change', searchData);
+  
+  searchData()
+ 

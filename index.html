@@ -22,21 +22,14 @@
         <div class="row">
            
             <div class="col input-group mb-3">
-                <input id="input-query" onkeyup="searchName(event)" type="text" class="" aria-label="Text input with dropdown button">
-                <div class="col">
-
-                    <select id="choose-one" class="form-select" aria-label="Default select example">
-                        <option id="not-selected"  selected>Select one</option>
-                        <option id="nameQuery" value="1">Name</option>
-                        <option id="usernameQuery" value="2">Username</option>
-                        <option id="emailQuery" value="3">Email</option>
+                <div class="col-3">
+                    <select id="select-one" class="form-select">
+                        <option id="nameQuery" value="name">Name</option>
+                        <option id="usernameQuery" value="username">Username</option>
+                        <option id="emailQuery" value="email">Email</option>
                     </select>
                 </div>
-                <div class="col">
-
-                    <button id="search-btn" type="button" class="btn btn-secondary">Search</button>
-                </div>
-
+                <input id="input-query" type="text" class="col-3" placeholder="Search...">
             </div>
         </div>
     </div>
